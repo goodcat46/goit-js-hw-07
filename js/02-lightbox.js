@@ -3,20 +3,14 @@ import { galleryItems } from './gallery-items.js';
 
 // console.log(galleryItems);
 
+const galleryListEl = document.querySelector('.gallery');
 function createGalery() {
   const createGalleryItem = element => {
     const { preview, original, description } = element;
     return `
-<div class="gallery__item">
-  <a class="gallery__link" href="${original}">
-    <img
-      class="gallery__image"
-      src="${preview}"
-      data-source="${original}"
-      alt="${description}"
-    />
-  </a>
-</div>`;
+    <a class="gallery__item" href="${original}">
+    <img class="gallery__image" src="${preview}" alt="${description}" />
+  </a>`;
   };
 
   const galleryItemsArray = galleryItems.map(el => {
@@ -24,9 +18,10 @@ function createGalery() {
   });
 
   galleryListEl.insertAdjacentHTML('afterbegin', galleryItemsArray.join(''));
-
 }
 createGalery();
+let gallery = new SimpleLightbox('.gallery a', { captionsData: "alt", captionDelay: 250});
+
 
 
 
